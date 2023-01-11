@@ -31,11 +31,11 @@ public class LoopFor {
 		  입력받은 값에 대한 구구단 출력
 		  예)2를 입력->2*1=2... 2*9=18*/
 		Scanner sc = new Scanner(System.in);
-//		System.out.println("구구단 입력>");
-//		int gugu = Integer.parseInt(sc.nextLine());
-//		for(int i = 1 ; i <= 9 ; i++) {
-//			System.out.println(gugu+" * "+ i + " = " +(gugu*i));
-//		}
+		System.out.println("구구단 입력>");
+		int gugu = Integer.parseInt(sc.nextLine());
+		for(int i = 1 ; i <= 9 ; i++) {
+			System.out.println(gugu+" * "+ i + " = " +(gugu*i));
+		}
 		
 		//입력한 값에 대한 총합, 평균, 최대값, 최소값, 데이터 받을 개수
 		//스캐너 -> 데이터 입력
@@ -51,7 +51,6 @@ public class LoopFor {
 		
 		int data =0;
 		int sum = 0;
-		int avg = 0;
 		int max = 0;
 		int min = 0;
 		
@@ -79,7 +78,7 @@ public class LoopFor {
 		System.out.println("최대값 : " + max);
 		System.out.println("최소값 : " + min);
 		//반복문에서 총합, 입력받은 갯수를 활용해서 평균
-		System.out.printf("평균 : %5.2f" + (double)sum/in);
+		System.out.printf("평균 : %f" + (double)sum/in);
 		
 		//2번문제)up and down
 		/*임의의 랜덤 값(1~100) 추출하여 5번의 기회안에
