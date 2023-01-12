@@ -48,13 +48,20 @@ public class A0112 {
 				}
 			}else if(selectNo==4) {
 				//4) 분석기능은 최고 가격을 가지는 제품과 해당 제품을 제외한 제품들의 총합을 구합니다.
-				//최고 가격을 가진 제품
+				int sum = 0;
 				int max = 0;
-				for(int i = 0 ; i < claAry.length ; i++) {
-					max = claAry[0].price;
-					System.out.println("최고 금액을 가진 제품 : " + max);
+				//제품명 받을 변수
+				String item = "";
+				for(A0112_class temp : claAry) {
+					sum += temp.price;
+					item = temp.productName;
+					
+					if(max<temp.price) {
+						max = temp.price;
+					}
 				}
-				//최고 가격을 가진 제품을 제외한 제품들의 총 합
+				System.out.println("제일 비싼"+ item + " : " + max + "원");
+				System.out.println("그 외 상품의 합계 : " + (sum-max) + "원");
 			}else if(selectNo==5) {
 				// 5) 종료 시에는 프로그램을 종료한다고 메세지를 출력하도록 구현하세요.
 				System.out.println("시스템 종료");
