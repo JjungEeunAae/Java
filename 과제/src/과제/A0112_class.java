@@ -12,13 +12,13 @@ public class A0112_class {
 	// 5) 종료 시에는 프로그램을 종료한다고 메세지를 출력하도록 구현하세요.
 	
 	//필드
-		String productName;
-		int price;
+		String productName; //상품명
+		int price;          //상품가격
 	//생성자
 		A0112_class(){
 			
 		}
-		A0112_class(String productName , int price){
+		A0112_class(String productName , int price){   //생성자를 만들긴 했으나 사용하지않음
 			this.productName = productName;
 			this.price = price;
 		}
