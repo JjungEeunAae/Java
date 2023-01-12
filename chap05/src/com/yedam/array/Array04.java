@@ -9,9 +9,9 @@ public class Array04 {
 		int[][] intAay = {{1,2},{1,2,3}};
 		
 		int[][] mathScore = new int[2][3];
+		System.out.println(mathScore.length);
 		for(int i = 0 ; i < mathScore.length ; i++) {
 			//배열 안에 덩어리가 몇개인가?
-			System.out.println(mathScore.length); 
 			for(int k = 0; k < mathScore[i].length; k++) {
 				//덩어리 안에 인덱스 값이 무엇인가?
 				System.out.println("mathScore["+i+"]["+k+"]="+mathScore[i][k]); 

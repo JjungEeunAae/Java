@@ -52,9 +52,9 @@ public class A0112 {
 				int max = 0;
 				//제품명 받을 변수
 				String item = "";
-				for(A0112_class temp : claAry) {
-					sum += temp.price;
-					item = temp.productName;
+				for(A0112_class temp : claAry) { //향상된 for문
+					sum += temp.price;           //타입 변수 : 배열 /   실행문
+					item = temp.productName;     //배열이 끝날 때까지 실행함
 					
 					if(max<temp.price) {
 						max = temp.price;
