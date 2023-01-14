@@ -3,7 +3,9 @@ package 과제;
 import java.util.Scanner;
 
 public class A0112_0113 {
-	
+	// 다음은 키보드로부터 상품 수와 상품 가격을 입력받아서
+	// 최고 가격을 가지는 제품과 해당 제품을 제외한 제품들의 총 합을 구하는 프로그램을 작성하세요.
+	// 1) 메뉴는 다음과 같이 구성하세요.
 	public static Scanner sc = new Scanner(System.in);
 	public static int meunSelect(){
 		// 1.상품 수 | 2.상품 및 가격입력 | 3.제품별 가격 | 4.분석 | 5.종료
@@ -63,23 +65,12 @@ public class A0112_0113 {
 		return 0;
 	}
 	
-	
-	
-	
+	//상품 정보를 보관하는 배열
 	static A0112_class[] claAry = null;
 	static int claNum = 0;
 	
+	//--main--//
 	public static void main(String[] args) {
-		
-		
-		// 다음은 키보드로부터 상품 수와 상품 가격을 입력받아서
-		// 최고 가격을 가지는 제품과 해당 제품을 제외한 제품들의 총 합을 구하는 프로그램을 작성하세요.
-		// 1) 메뉴는 다음과 같이 구성하세요.
-		
-		
-		//상품 정보를 보관하는 배열
-
-		
 		//while문을 활용하여 관리 프로그램 작성
 		while(true) {
 			meunSelect();
@@ -97,6 +88,7 @@ public class A0112_0113 {
 				break;
 			}
 		}
+		
 	}
 
 }
