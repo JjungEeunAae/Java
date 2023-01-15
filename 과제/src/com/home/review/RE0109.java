@@ -1,4 +1,4 @@
-package 과제;
+package com.home.review;
 
 public class RE0109 {
 	public static void main(String[] args) {

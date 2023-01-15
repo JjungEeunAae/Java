@@ -1,4 +1,4 @@
-package 과제;
+package com.home.review;
 
 import java.util.Scanner;
 

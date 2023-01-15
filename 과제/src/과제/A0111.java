@@ -65,19 +65,19 @@ public class A0111 {
 			//문제5. 별도의 배열을 선언하여 양의 정수 10개를 입력받아 배열에 저장하고, 배열에 있는 정수 중에서 3의 배수만 출력해보자.
 			
 			//별도의 배열(10개를 입력 받을 수 있는 배열)
-//			int[] intAry = new int[10];
-//			//10번 입력 할 반복문
-//			for(int i = 0 ; i < 10 ; i++) {
-//				System.out.println((i+1) + "회 입력(총10회)>");
-//				intAry[i] = Integer.parseInt(sc.nextLine());
-//			}
-//			//3의 배수만 출력
-//			for(int i = 0 ; i < 10 ; i++) {
-//				if(intAry[i]%3 != 0) {
-//					continue;
-//				}
-//				System.out.println("입력한 값 중 3의 배수는 " + intAry[i] + " 입니다");
-//			}
+			int[] intAry = new int[10];
+			//10번 입력 할 반복문
+			for(int i = 0 ; i < 10 ; i++) {
+				System.out.println((i+1) + "회 입력(총10회)>");
+				intAry[i] = Integer.parseInt(sc.nextLine());
+			}
+			//3의 배수만 출력
+			for(int i = 0 ; i < 10 ; i++) {
+				if(intAry[i]%3 != 0) {
+					continue;
+				}
+				System.out.println("입력한 값 중 3의 배수는 " + intAry[i] + " 입니다");
+			}
 			
 			//[추가 문제]
 
