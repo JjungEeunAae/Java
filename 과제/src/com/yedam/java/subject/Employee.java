@@ -1,4 +1,4 @@
-package com.homework.one;
+package com.yedam.java.subject;
 public class Employee {
 //Employee 클래스를 정의한다.
 	//이름과 연봉을 필드로 가지며 생성자를 이용하여 값을 초기화한다.

@@ -8,13 +8,13 @@ public class ObesityInfo extends StandardWeightInfo {
 	
 	//메소드
 	
-	public ObesityInfo(String name, int tallHeight, double weight) {
-		super(name, tallHeight, weight);
+	public ObesityInfo(String name, int height, double weight) {
+		super(name, height, weight);
 	}
 
 	//이름, 키, 몸무게와 비만도를 출력하는 기능
 	public void getInformation() {
-		System.out.printf("이름 : %s, 키 : %d, 몸무게 : %f", name, tallHeight, weight);
+		System.out.printf("이름 : %s, 키 : %d, 몸무게 : %f", name, height, weight);
 	}
 	
 	//표준체중을 구하는 기능

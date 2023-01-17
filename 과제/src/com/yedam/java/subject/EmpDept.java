@@ -1,4 +1,4 @@
-package com.homework.one;
+package com.yedam.java.subject;
 //EmpDept 클래스를 정의한다.
 public class EmpDept extends Employee {
 	/*
