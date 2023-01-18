@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class TryCatchFinallyExample {
 
 	public static void main(String[] args) {
-		//일반 예외
+		//일반 예외///
 		try {
 			Class clazz = Class.forName("java.lang.String2");	//클래스라는 class가 있음(클래스 자체를 들고 있는 class)
 		} catch (ClassNotFoundException e) {

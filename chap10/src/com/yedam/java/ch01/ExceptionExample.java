@@ -3,7 +3,7 @@ package com.yedam.java.ch01;
 public class ExceptionExample {
 
 	public static void main(String[] args) {
-		//NullPointerException
+		//NullPointerException////
 		//오류가 났을 때 위치를 알려줌
 		//예외가 발생했을 때 메세지와 그게 실제로 발생한 코드를 매칭시켜보면 좀 더 찾아가기 쉽다
 		//String data = null;
