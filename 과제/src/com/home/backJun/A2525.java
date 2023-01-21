@@ -10,12 +10,12 @@ public class A2525 {
 		int m = sc.nextInt();
 		int n = sc.nextInt();
 		
-		//½Ã°£À» ºÐÀ¸·Î ¹Ù²Ù±â
+		//ì‹œê°„ì„ ë¶„ìœ¼ë¡œ ë°”ê¾¸ê¸°
 		int a = (h*60+m+n);
 		int hour = a/60;
 		int minute = a%60;
 		
-		//hour°¡ 24¸¦ ³Ñ´Â´Ù¸é?
+		//hourê°€ 24ë¥¼ ë„˜ëŠ”ë‹¤ë©´?
 		if(hour >= 24) {
 			hour -= 24;
 		}

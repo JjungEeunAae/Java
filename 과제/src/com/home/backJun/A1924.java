@@ -5,26 +5,26 @@ import java.util.Scanner;
 public class A1924 {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-		//2007³â x¿ù yÀÏ¿¡ ´ëÇÑ ¿äÀÏ Ãâ·ÂÇÏ±â
+		//2007ë…„ xì›” yì¼ì— ëŒ€í•œ ìš”ì¼ ì¶œë ¥í•˜ê¸°
 		
-		int x = sc.nextInt();	//¿ù
-		int y = sc.nextInt();	//ÀÏ
-		int sumday = 0;			//x¿Í yÀÇ ÇÕÀ» ³ÖÀ» º¯¼ö ÃÊ±âÈ­
+		int x = sc.nextInt();	//ì›”
+		int y = sc.nextInt();	//ì¼
+		int sumday = 0;			//xì™€ yì˜ í•©ì„ ë„£ì„ ë³€ìˆ˜ ì´ˆê¸°í™”
 		
-		//1~12¿ùÀÇ ¿ù¸» ÀÏÀÚ
+		//1~12ì›”ì˜ ì›”ë§ ì¼ì
 		int[] monthLastDay = { 0,31,28,31,30,31,30,31,31,30,31,30,31 };
 		
-		//ÀÔ·Â ¿ùÀÇ ÀÌÀü ¿ù±îÁö ÃÑ ÀÏ¼ö¸¦ ±¸ÇÑ´Ù
+		//ì…ë ¥ ì›”ì˜ ì´ì „ ì›”ê¹Œì§€ ì´ ì¼ìˆ˜ë¥¼ êµ¬í•œë‹¤
 		for(int i = 1 ; i < x ; i++) {
 			sumday += monthLastDay[i];
 		}
-		//°è»êÀÌ ´Ù µÈ ¿ù¿¡ ÀÏÀÚ¸¦ ´õÇÑ´Ù
+		//ê³„ì‚°ì´ ë‹¤ ëœ ì›”ì— ì¼ìë¥¼ ë”í•œë‹¤
 		sumday+=y;
-		System.out.println("´õÇÑ°ª : " + sumday);
+		System.out.println("ë”í•œê°’ : " + sumday);
 		
-		//(¿ù¸»ÀÏÀÚ ÇÕ°è+¿äÀÏ)%7
+		//(ì›”ë§ì¼ì í•©ê³„+ìš”ì¼)%7
 		int sumday2 = sumday%7;
-		System.out.println("³ª¸ÓÁö °ª : " + sumday2);
+		System.out.println("ë‚˜ë¨¸ì§€ ê°’ : " + sumday2);
 		
 		
 		switch(sumday2) {

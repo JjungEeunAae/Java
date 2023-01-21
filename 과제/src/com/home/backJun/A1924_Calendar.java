@@ -8,20 +8,20 @@ public class A1924_Calendar {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		
-		int x = sc.nextInt();	//¿ù
-		int y = sc.nextInt();	//ÀÏ
+		int x = sc.nextInt();	//ì›”
+		int y = sc.nextInt();	//ì¼
 		
-		//Ä¶¸°´õ
+		//ìº˜ë¦°ë”
 		Calendar cal = Calendar.getInstance();
 
 		//1 <= x <= 12 , 1 <= y <= y
 		if(x >= 1 && x <= 12 && y >= 1 && y <= 31) {
 			
 			//set(int year, int month, int date)
-			//y : ÀÔ·Â¹ŞÀº ¿ùÀÇ ÀÏÀÚ·Î ¼¼ÆÃ
-			//month x´Â 0ÀÌ 1¿ùÀÌ¹Ç·Î -1À» ÇØÁØ´Ù
+			//y : ì…ë ¥ë°›ì€ ì›”ì˜ ì¼ìë¡œ ì„¸íŒ…
+			//month xëŠ” 0ì´ 1ì›”ì´ë¯€ë¡œ -1ì„ í•´ì¤€ë‹¤
 			cal.set(2007,  x-1, y);
-			//1:ÀÏ¿äÀÏ~7:Åä¿äÀÏ
+			//1:ì¼ìš”ì¼~7:í† ìš”ì¼
 			int dayNum = cal.get(Calendar.DAY_OF_WEEK);
 			System.out.println(dayNum);
 			switch(dayNum) {
