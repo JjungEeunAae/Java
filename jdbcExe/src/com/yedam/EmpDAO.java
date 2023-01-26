@@ -46,7 +46,7 @@ public class EmpDAO {
 
 	
 	//------------목록조회
-	// Map 을 활용하여 CRUD 구현
+	// Map 을 활용하여여 CRUD 구현
 	public List<Map<String, Object>> empList(){
 		sql = "select * from emp_temp";
 		connect();
