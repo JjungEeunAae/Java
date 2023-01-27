@@ -46,7 +46,7 @@ public class Main {
 		System.out.println("⊱ ── {.⋅ 순서대로 입력해주세요 ⋅.} ── ⊰");
 		System.out.print(" ✿ 아이디> ");
 		id = sc.nextLine();
-		//아이디 중복
+		//아이디 중복체크
 		if(idOverLap > 0) {
 		System.out.print(" ✿ 비번> ");
 		String pw = sc.nextLine();
@@ -75,11 +75,13 @@ public class Main {
 				System.out.println("✿Well Come✿");
 			} else {
 				System.out.println("가입이 정상적으로 되지 않았습니다");
+				
 			}
 		} else if(idOverLap < 0){
-			System.out.println("아이디 중복! 다른 아이디로 입력해주세요");
+			System.out.println("아이디 중복!\n"
+					+"정상적으로 가입 진행이 되지 않았습니다\n"
+					+"Member 메뉴로 돌아갑니다!");
 		}
-
 	}
 	
 	public static void login() {
