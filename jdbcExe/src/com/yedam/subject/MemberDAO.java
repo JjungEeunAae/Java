@@ -7,14 +7,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import oracle.net.aso.r;
+
 public class MemberDAO {
 	String url = "jdbc:oracle:thin:@localhost:1521:xe";
-	String user = "hr";
-	String pass = "hr";
+	String user = "dev";
+	String pass = "dev";
 	Connection conn;
 	
-	PreparedStatement psmt = null; //�Ķ���� �ޱ� �� ���� ��ü
-	Statement stmt = null;		   //��ü��ȸ �� �� ����ϱ�
+	PreparedStatement psmt = null;
+	Statement stmt = null;
 	ResultSet rs = null;
 	
 	String sql;
@@ -24,18 +26,16 @@ public class MemberDAO {
 			Class.forName("oracle.jdbc.OracleDriver");
 			conn = DriverManager.getConnection(url, user, pass);
 		} catch (ClassNotFoundException e) {
-			System.out.println("�����߻�");
+			System.out.println("에러");
 			e.printStackTrace();
 		} catch (SQLException e) {
-			System.out.println("�����߻�");
+			System.out.println("에러");
 			e.printStackTrace();
 		}
 	}
 	
-	
-	
 	public MemberVO getMember(String id) {
-		//�ܰ���ȸ
+		//회원탈퇴
 		sql = "select * from board_member where member_id = " + id;
 		connect();
 		try {
@@ -54,10 +54,32 @@ public class MemberDAO {
 		return null;
 	}
 	
+	//로그인(단건조회)
+	public int getlogin(String id, String pw) {
+		sql = "SELECT member_pw FROM board_member WHERE member_id = ?";
+		connect();
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1,id);
+			// 어떠한 결과를 받아오는 ResultSet 타입의 rs 변수에 쿼리문을 실행한 결과를 넣어줌 
+			rs = psmt.executeQuery();
+			if(rs.next()) {
+				if(rs.getString(1).contentEquals(pw)) {
+					return 1; //로그인 성공
+				} else {
+					return 0; //비밀번호 불일치
+				}
+			}
+			return -1; //아이디가 없음
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return -2; // DB오류
+	}
 	
 	
+	//회원가입
 	public int addMember(MemberVO member) {
-		//ȸ�����
 		connect();
 		sql = "insert into board_member(member_id, member_pw, member_name, member_addr, member_tel, member_birth, member_email)"
 				+"values (?,?,?,?,?,?,?)";
@@ -81,15 +103,16 @@ public class MemberDAO {
 	}
 	
 	
-	
-	public int deleteMember(String id) {
-		//ȸ������
+	//회원탈퇴
+	public int deleteMember(MemberVO member) {
 		connect();
-		sql = "delete from board_member where member_id = ?";
+		sql = "delete from board_member where member_id = ? and member_pw = ? and member_name = ?";
 		int r = 0;
 		try {
 			psmt = conn.prepareStatement(sql);
-			psmt.setString(1, id);
+			psmt.setString(1, member.getMemberId());
+			psmt.setString(2, member.getMemberPw());
+			psmt.setString(3, member.getMemberName());
 			
 			r = psmt.executeUpdate();
 		} catch (SQLException e) {
@@ -97,23 +120,23 @@ public class MemberDAO {
 		}
 		return r;
 	}
-	
-	public int deleteMemberTwo(String pw) {
-		connect();
-		sql = "delete from board_member where member_pw = ?";
-		int r = 0;
-		try {
-			psmt = conn.prepareStatement(sql);
-			psmt.setString(1, pw);
-			
-			r = psmt.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return r;
-	}
-	
-	//ID �ߺ� üũ
+
+//	//생일축하
+//	//로그인시 아이디에 해당되는 개인 정보에 생일이 당일이면 생일축하합니다 띄우기
+//	public int getBirth(String id) {
+//		connect();
+//		sql = "select member_birth from board_member where member_id = ?";	
+//		try {
+//			psmt = conn.prepareStatement(sql);
+//			psmt.setString(1, id);
+//			rs = psmt.executeQuery();
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+//		return -2; // DB오류
+//	}
+
+	//ID 중복체크
 //	public int confirmId(String id) {
 //		connect();
 //		int x = -1;
@@ -126,7 +149,7 @@ public class MemberDAO {
 //			rs = psmt.executeQuery();
 //			
 //			if(rs.next()) {
-//				x = 1; //�ش� ���̵� ����
+//				x = 1; //�ش� ���̵� ����
 //			} else {
 //				x = -1;
 //			}
