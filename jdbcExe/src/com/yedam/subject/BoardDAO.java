@@ -9,8 +9,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.yedam.EmpVO;
-
 public class BoardDAO {
 	String url = "jdbc:oracle:thin:@localhost:1521:xe";
 	String user = "dev";

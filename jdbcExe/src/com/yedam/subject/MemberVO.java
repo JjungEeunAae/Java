@@ -6,7 +6,7 @@ public class MemberVO {
 	private String memberName;
 	private String memberAddr;
 	private String memberTel;
-	private int memberBirth;
+	private String memberBirth;
 	private String memberEmail;
 	
 	public String getMemberId() {
@@ -39,10 +39,10 @@ public class MemberVO {
 	public void setMemberTel(String memberTel) {
 		this.memberTel = memberTel;
 	}
-	public int getMemberBirth() {
+	public String getMemberBirth() {
 		return memberBirth;
 	}
-	public void setMemberBirth(int memberBirth) {
+	public void setMemberBirth(String memberBirth) {
 		this.memberBirth = memberBirth;
 	}
 	public String getMemberEmail() {

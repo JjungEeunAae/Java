@@ -34,6 +34,7 @@ public class MemberDAO {
 		}
 	}
 	
+	
 	public MemberVO getMember(String id) {
 		//회원탈퇴
 		sql = "select * from board_member where member_id = " + id;
@@ -46,6 +47,7 @@ public class MemberDAO {
 				m.setMemberId(rs.getString("member_id"));
 				m.setMemberPw(rs.getString("member_pw"));
 				m.setMemberName(rs.getString("member_name"));
+				m.setMemberBirth(rs.getString("member_birth"));
 				return m;
 			}
 		} catch(SQLException e) {
@@ -92,7 +94,7 @@ public class MemberDAO {
 			psmt.setString(3, member.getMemberName());
 			psmt.setString(4, member.getMemberAddr());
 			psmt.setString(5, member.getMemberTel());
-			psmt.setInt(6,member.getMemberBirth());
+			psmt.setString(6,member.getMemberBirth());
 			psmt.setString(7, member.getMemberEmail());
 			
 			r = psmt.executeUpdate();
@@ -102,6 +104,27 @@ public class MemberDAO {
 		return r;
 	}
 	
+	//회원가입 중복체크
+	public int confirmId(String id) {
+		connect();
+		int x = -1;
+		sql = "select * from board_member where member_id = ?";
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, id);
+			
+			rs = psmt.executeQuery();
+			
+			if(rs.next()) {
+				x = 1;
+			} else {
+				x = -1;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return x;
+	}
 	
 	//회원탈퇴
 	public int deleteMember(MemberVO member) {
@@ -120,44 +143,8 @@ public class MemberDAO {
 		}
 		return r;
 	}
-
-//	//생일축하
-//	//로그인시 아이디에 해당되는 개인 정보에 생일이 당일이면 생일축하합니다 띄우기
-//	public int getBirth(String id) {
-//		connect();
-//		sql = "select member_birth from board_member where member_id = ?";	
-//		try {
-//			psmt = conn.prepareStatement(sql);
-//			psmt.setString(1, id);
-//			rs = psmt.executeQuery();
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-//		return -2; // DB오류
-//	}
-
 	//ID 중복체크
-//	public int confirmId(String id) {
-//		connect();
-//		int x = -1;
-//		ResultSet rs = null;
-//		sql = "select * from board_member where member_id = ?";
-//		try {
-//			psmt = conn.prepareStatement(sql);
-//			psmt.setString(1, id);
-//			
-//			rs = psmt.executeQuery();
-//			
-//			if(rs.next()) {
-//				x = 1; //�ش� ���̵� ����
-//			} else {
-//				x = -1;
-//			}
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-//		return x;
-//	}
+
 	
 	
 	
