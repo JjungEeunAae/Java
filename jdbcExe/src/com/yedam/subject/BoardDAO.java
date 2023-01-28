@@ -35,7 +35,9 @@ public class BoardDAO {
 	// 전체목록조회
 	public List<BoardVO> boardVoList() {
 		connect();
-		sql = "select * from post";
+		// sql = "select * from post";
+		// 글번호 기준으로 오름차순 정렬
+		sql = "select * from post order by post_num";
 		List<BoardVO> list = new ArrayList<>();
 		try {
 			stmt = conn.createStatement();
@@ -55,7 +57,7 @@ public class BoardDAO {
 		}
 		return list;
 	}
-	
+
 	// 단건조회
 	public BoardVO getBoard(int num) {
 		sql = "select * from post where post_num =" + num;
@@ -78,14 +80,32 @@ public class BoardDAO {
 		// 조회된 데이터가 없습니다
 		return null;
 	}
-	
-	// post_num number primary key not null, --게시글번호
-	// post_title varchar2(100) not null, --글제목
-	// post_content varchar2(1000), --글내용
-	// post_writer VARCHAR2(50) not null, --작성자
-	// post_date date default sysdate --작성일자
-	
-	//해당되는 아이디의 게시글 단건조회하는 클래스
+
+	// 입력한 게시글 번호가 db에 없을 때 사용하는 클래스
+	public BoardVO getPostNum(int num) {
+		sql = "select nvl(max(post_num),0) post_num" + " from post" + " where post_num =" + num;
+		connect();
+		try {
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
+			if (rs.next()) {
+				BoardVO b = new BoardVO();
+				b.setPostNum(rs.getInt("post_num"));
+//				b.setPostTitle(rs.getString("post_title"));
+//				b.setPostContent(rs.getString("post_content"));
+//				b.setWriter(rs.getString("post_writer"));
+//				b.setPostDate(rs.getString("post_date"));
+				return b;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		// 조회된 데이터가 없습니다
+		System.err.println("입력한 번호는 등록된 게시글 번호가 아닙니다");
+		return null;
+	}
+
+	// 해당되는 아이디의 게시글 단건조회하는 클래스
 	public List<BoardVO> getSelectBoard(String writer) {
 		sql = "select post_num,post_date,post_writer,post_title,post_content from post where post_writer=" + writer;
 		connect();
@@ -93,7 +113,7 @@ public class BoardDAO {
 		try {
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
-			while(rs.next()) {
+			while (rs.next()) {
 				BoardVO b = new BoardVO();
 				b.setPostNum(rs.getInt("post_num"));
 				b.setPostDate(rs.getString("post_date"));
@@ -112,7 +132,7 @@ public class BoardDAO {
 	public int postInsert(BoardVO board) {
 		connect();
 		sql = "insert into post(post_num, post_title, post_content, post_writer)"
-				+ "values ((select NVL(MAX(post_num)+1,0)FROM post) ,?,?,?)";
+				+ "values ((select NVL(MAX(post_num)+1,1)FROM post) ,?,?,?)";
 
 		int r = 0;
 		try {
@@ -145,19 +165,42 @@ public class BoardDAO {
 		}
 		sql += "where post_num = ?";
 		int cut = 1;
-		
+
 		try {
 			psmt = conn.prepareStatement(sql);
 			if (title != null) {
-			psmt.setString(cut++, title);
+				psmt.setString(cut++, title);
 			}
-			if (content != null) {			
-			psmt.setString(cut++, content);
+			if (content != null) {
+				psmt.setString(cut++, content);
 			}
 			if (writer != null) {
-			psmt.setString(cut++, writer);
+				psmt.setString(cut++, writer);
 			}
 			psmt.setInt(cut++, num);
+
+			r = psmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return r;
+	}
+
+	// 게시글삭제
+	// post_num number primary key not null, --게시글번호
+	// post_title varchar2(100) not null, --글제목
+	// post_content varchar2(1000), --글내용
+	// post_writer VARCHAR2(50) not null, --작성자
+	// post_date date default sysdate --작성일자
+
+	public int deleteBoard(BoardVO board) {
+		connect();
+		sql = "delete from post where post_num = ? and post_writer = ?";
+		int r = 0;
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, board.getPostNum());
+			psmt.setString(2, board.getWriter());
 
 			r = psmt.executeUpdate();
 		} catch (SQLException e) {
